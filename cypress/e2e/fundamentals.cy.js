@@ -1,13 +1,16 @@
 describe("Fundamentals test", () => {
-  it("contains correct header text", () => {
+  beforeEach(() => {
+    //beforeEach is used for anything to setup your test
     cy.visit("/fundamentals");
-    cy.get('[data-test="fundamentals-header"]').should(
+  });
+  it("contains correct header text", () => {
+    //cy.getDataTest is used because I have created a new cypress command in the commands.js file
+    cy.getDataTest("fundamentals-header").should(
       "contain.text",
       "Testing Fundamentals"
-    );
+    );  
   });
   it("Accordion works correctly", () => {
-    cy.visit("/fundamentals");
     cy.contains(/Your tests will exist in a describe block/i).should(
       "not.be.visible"
     );
